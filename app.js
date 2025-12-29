@@ -1,10 +1,18 @@
 const radio = document.getElementById("radio");
+let activated = false;
 
 function playRadio() {
-  radio.load();        // fuerza carga del stream
+  if (!activated) {
+    radio.src = "https://servidorrprivado.com/mp3/creciend/";
+    radio.load();
+    activated = true;
+  }
+
+  radio.muted = false;
+
   radio.play()
     .then(() => {
-      console.log("Radio reproduciendo");
+      console.log("Audio activado correctamente");
     })
     .catch(err => {
       alert("Toca el botón otra vez para activar el audio");
@@ -15,3 +23,4 @@ function playRadio() {
 function stopRadio() {
   radio.pause();
 }
+
